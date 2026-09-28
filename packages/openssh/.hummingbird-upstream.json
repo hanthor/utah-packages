@@ -1,0 +1,8 @@
+{
+  "package": "openssh",
+  "branch": "rawhide",
+  "remote": "https://src.fedoraproject.org/rpms/openssh.git",
+  "commit": "e700631185906986adc4a888f1b62d4dce311118",
+  "tree": "2f53cbd4b6a1420ed0b4d83a44668b9218f2f1f2",
+  "imported_at": "2026-09-28T23:27:56.989397+00:00"
+}

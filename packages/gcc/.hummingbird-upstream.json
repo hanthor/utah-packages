@@ -1,0 +1,8 @@
+{
+  "package": "gcc",
+  "branch": "rawhide",
+  "remote": "https://src.fedoraproject.org/rpms/gcc.git",
+  "commit": "a67b551b8795effa82df395f7b55f1f6d96d7ac7",
+  "tree": "efca89ef3eb72dcfc08c48e758af16b7f8d19b5e",
+  "imported_at": "2026-09-28T23:27:53.283078+00:00"
+}
