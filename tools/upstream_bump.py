@@ -652,7 +652,12 @@ def apply(root: Path, proposal: dict, opener=urllib.request.urlopen) -> dict:
 
     # A relock proposal carries the GNOME module explicitly because the old
     # primary is the lookaside; every other proposal reads it off the lock.
-    module = proposal.get("module") or gnome_module(entry)
+    # Only a relock: forge proposals carry their feed label (github.com/o/r)
+    # under the same key, and reading that as a GNOME module built
+    # download.gnome.org/sources/github.com/... URLs that 404ed, which killed
+    # every scheduled run that had a forge update to apply.
+    module = (proposal.get("module") if proposal.get("kind") == "relock" else None) \
+        or gnome_module(entry)
     if module:
         tarball = tarball_version(release)
         url = f"{GNOME_SOURCES}{module}/{release_cycle(tarball)}/{module}-{tarball}.tar.xz"
@@ -697,6 +702,9 @@ def main() -> int:
         help="rewrite the inventory, spec and sources manifest (default: report only)",
     )
     args = parser.parse_args()
+    # Progress goes to stdout and skips to stderr; unbuffered order is what
+    # lets a CI log name the package a failure belongs to.
+    sys.stdout.reconfigure(line_buffering=True)
 
     proposals = plan(args.root, args.package, cycle=args.cycle)
     failures = [p for p in proposals if "error" in p]
@@ -711,10 +719,19 @@ def main() -> int:
     for failure in failures:
         print(f"skipped {failure['name']}: {failure['error']}", file=sys.stderr)
 
+    applied = 0
     for bump in finals:
         print(f"{bump['name']}: {bump['current']} -> {bump['latest']}")
         if args.apply:
-            apply(args.root, bump)
+            # One release whose bytes cannot be fetched is reported and
+            # skipped, the same rule plan() applies to an unreachable feed: it
+            # must not discard every other bump the run already proved safe.
+            try:
+                apply(args.root, bump)
+            except (urllib.error.URLError, OSError, ValueError) as error:
+                print(f"skipped {bump['name']}: {error}", file=sys.stderr)
+                continue
+            applied += 1
 
     for item in review:
         # Deliberately not applied, and deliberately not silent: a later cycle
@@ -729,6 +746,9 @@ def main() -> int:
 
     if not finals:
         print("no in-cycle release is newer than what the inventory locks")
+    elif args.apply and not applied:
+        print("every proposed bump failed to apply", file=sys.stderr)
+        return 1
     return 0
 
 
