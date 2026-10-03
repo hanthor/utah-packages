@@ -28,6 +28,15 @@ add a deterministic transformation from the SHA-512-pinned upstream release to
 `packages/<name>/sources` to the generated digest. Diff the unpacked tree
 against Fedora's archive first: for `gpm` they are identical.
 
+The import pull request carries the recipe only, so it is not mergeable as
+opened: `validate` fails on the missing source lock and Packit block, and the
+recipe-count tests fail by one. On the import branch, lock the source with
+`tools/bootstrap_upstream_sources.py --package <name> --merge` (it needs
+`rpmspec`; run it in the pinned `quay.io/packit/packit` image if the host has
+none), regenerate `.packit.yaml` with `tools/render_packit_config.py --write`,
+and bump the counts listed under *Removing a package* below. See
+[`repeated-mistakes.md` section 23](skills/repeated-mistakes.md#23-an-import-pull-request-is-a-recipe-not-a-package).
+
 Build order is solved from the recipe's BuildRequires: a package builds after
 every factory package it BuildRequires, and a merge that changes it rebuilds it
 plus everything that BuildRequires it. You do not assign a `stage`. The one

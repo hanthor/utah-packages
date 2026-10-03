@@ -3344,6 +3344,16 @@
       "url": "https://github.com/systemd/zram-generator/archive/v1.2.1/zram-generator-1.2.1.tar.gz",
       "filename": "zram-generator-1.2.1.tar.gz",
       "sha512": "f7d4ca7a0962b3d800307e1d0af790cb58da3be981544ad1d1ea809066c8545a8572b15ae00c2816908a90605abfd2b774fd208d3042bc6a8d4806c5d72a53e5"
+    },
+    {
+      "name": "plymouth",
+      "version": "26.134.222",
+      "url": "https://gitlab.freedesktop.org/plymouth/plymouth/-/archive/26.134.222/plymouth-26.134.222.tar.bz2",
+      "filename": "plymouth-26.134.222.tar.bz2",
+      "sha512": "61d43405fca0208bb2cdd5a1534b8de390fd9e33677709388a6e42feba13f8ba230d0791c63a94648b8ad70946597747b5bdd0ddab35e74c6e3b69a8e212b100",
+      "fallback_urls": [
+        "https://src.fedoraproject.org/repo/pkgs/rpms/plymouth/plymouth-26.134.222.tar.bz2/sha512/61d43405fca0208bb2cdd5a1534b8de390fd9e33677709388a6e42feba13f8ba230d0791c63a94648b8ad70946597747b5bdd0ddab35e74c6e3b69a8e212b100/plymouth-26.134.222.tar.bz2"
+      ]
     }
   ]
 }

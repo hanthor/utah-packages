@@ -481,6 +481,30 @@ is not production (canary prefix, `publish_tag`) does not touch the issue.
 job. Before extending the report or the issue step, ask what the run proved;
 "no artifact" is proof of failure only when the wave was allowed to finish.
 
+## 23. An import pull request is a recipe, not a package
+
+**What happened.** `d088a14` (#312) merged the bot's *Import Rawhide
+package* pull request for plymouth as-is. The workflow only runs
+`tools/import_rawhide.py`, which copies the dist-git recipe; it does not
+write the source lock, the Packit block, or the recipe counts. `main` went
+red in `validate` ("packages missing source locks: plymouth", "packages
+missing Packit config: plymouth") and in eleven count tests (`401 != 402`),
+failing Canary, Unit tests and Package factory configuration on every open
+pull request.
+
+**Rule.** Before merging an import, finish it on the import branch:
+
+- Lock the source with `tools/bootstrap_upstream_sources.py --package <name>
+  --merge`. It needs `rpmspec`; run it inside the pinned
+  `quay.io/packit/packit` image (digest in `packit-srpm-chunk.yml`) when the
+  host has none. Add the Fedora lookaside as `fallback_urls`, never as `url`.
+- Regenerate `.packit.yaml` with `python3 tools/render_packit_config.py
+  --write`.
+- Bump the recipe count in the tests listed under *Removing a package* in
+  [`contributing.md`](../contributing.md) and in `docs/architecture.md`,
+  including the quoted `validate.py` output line.
+- `just check` green on the import branch, not after merge.
+
 ## Quick checks before pushing a fix
 
 - [ ] Does `git log --oneline -- <file>` show this file being fixed for the
@@ -498,3 +522,5 @@ job. Before extending the report or the issue step, ask what the run proved;
       satisfy?
 - [ ] Does a change to `report` or the tracking issue still stay silent for
       a cancelled run and a canary pass?
+- [ ] Is a new recipe source-locked, in `.packit.yaml`, and counted, in
+      the same pull request that imports it?

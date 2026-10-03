@@ -1816,6 +1816,12 @@ packages:
     downstream_package_name: pixman
     paths:
       - packages/pixman
+  plymouth:
+    specfile_path: plymouth.spec
+    upstream_package_name: plymouth
+    downstream_package_name: plymouth
+    paths:
+      - packages/plymouth
   poppler-data:
     specfile_path: poppler-data.spec
     upstream_package_name: poppler-data
