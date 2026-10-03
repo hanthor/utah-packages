@@ -847,6 +847,28 @@ class ApplyTests(unittest.TestCase):
             self.assertEqual(updated["filename"], "adw-gtk3v6.5.tar.xz")
 
 
+    def test_a_spec_that_cannot_be_bumped_leaves_the_lock_alone(self) -> None:
+        # main() skips a package whose apply() raises; nothing may be half
+        # written when it does.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "config").mkdir()
+            package = root / "packages" / "pango"
+            package.mkdir(parents=True)
+            lock = {"packages": [{
+                "name": "pango", "version": "1.58.2",
+                "url": "https://download.gnome.org/sources/pango/1/pango-1.58.2.tar.xz",
+                "filename": "pango-1.58.2.tar.xz", "sha512": "d" * 128}]}
+            config = root / "config" / "upstream-sources.json"
+            config.write_text(json.dumps(lock, indent=2) + "\n")
+            before = config.read_text()
+            (package / "pango.spec").write_text("Name: pango\n")
+            opener = fake_opener(
+                {"https://download.gnome.org/sources/pango/1.58/pango-1.58.3.tar.xz": b"x"})
+            with self.assertRaises(ValueError):
+                apply(root, {"name": "pango", "latest": "1.58.3"}, opener=opener)
+            self.assertEqual(config.read_text(), before)
+
 class MainApplyTests(unittest.TestCase):
     """main() keeps going when one bump's bytes cannot be fetched."""
 

@@ -674,8 +674,11 @@ def apply(root: Path, proposal: dict, opener=urllib.request.urlopen) -> dict:
     if rpm_version(entry["version"]) != rpm_version(updated["version"]):
         updated.pop("dist_bump", None)
     document["packages"][index] = updated
-    config.write_text(json.dumps(document, indent=2) + "\n")
 
+    # The lock is written last. rewrite_spec() raises before writing when the
+    # spec has no Version: line, and main() skips that package and carries on;
+    # with the lock written first, the skip left the lock on the new release
+    # and the spec on the old one.
     package = root / "packages" / name
     spec = package / f"{name}.spec"
     if spec.is_file():
@@ -683,6 +686,7 @@ def apply(root: Path, proposal: dict, opener=urllib.request.urlopen) -> dict:
     manifest = package / "sources"
     if manifest.is_file():
         rewrite_sources(manifest, updated["filename"], digest)
+    config.write_text(json.dumps(document, indent=2) + "\n")
     return updated
 
 
