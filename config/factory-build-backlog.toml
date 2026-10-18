@@ -144,14 +144,10 @@ packages = [
     "gutenprint",
     "gutenprint-cups",
     "gutenprint-libs",
-    "hplip",
-    "hplip-common",
-    "hplip-libs",
     "ipp-usb",
     "liblouisutdml",
     "liblouisutdml-utils",
     "libsane-airscan",
-    "libsane-hpaio",
     "mpage",
     "printer-driver-brlaser",
     "ptouch-driver",
@@ -161,8 +157,6 @@ packages = [
     "sane-backends-drivers-scanners",
     "sane-backends-libs",
     "splix",
-    "system-config-printer-libs",
-    "system-config-printer-udev",
 ]
 
 [areas.gnome-apps]
@@ -654,6 +648,16 @@ packages = [
     { name = "rsync", pr = 514 },
     { name = "tmux", pr = 514 },
     { name = "xdg-utils", pr = 514 },
+    # Printing/scanning core wave: system-config-printer and hplip recipes.
+    # hplip-common, hplip-libs and libsane-hpaio are %package subpackages of
+    # hplip.spec; system-config-printer-libs and -udev are %package
+    # subpackages of system-config-printer.spec. (pr filled at push time.)
+    { name = "hplip" },
+    { name = "hplip-common" },
+    { name = "hplip-libs" },
+    { name = "libsane-hpaio" },
+    { name = "system-config-printer-libs" },
+    { name = "system-config-printer-udev" },
 ]
 
 [wontfix]
