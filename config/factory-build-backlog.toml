@@ -43,15 +43,12 @@ packages = [
     "LCEVCdec",
     "LibRaw",
     "davs2-libs",
-    "faad2-libs",
     "ffmpeg",
     "ffmpeg-libs",
     "ffmpegthumbnailer",
     "ffmpegthumbnailer-libs",
-    "gstreamer1-plugin-dav1d",
     "gstreamer1-plugin-libav",
     "gstreamer1-plugins-good-qt6",
-    "gstreamer1-plugins-ugly-free",
     "liba52",
     "libavc1394",
     "libavcodec",
@@ -543,7 +540,6 @@ packages = [
     "nm-connection-editor",
     "nss-altfiles",
     "nss-mdns",
-    "openal-soft",
     "openexr-libs",
     "oversteer-udev",
     "pam_afs_session",
@@ -590,7 +586,6 @@ packages = [
     "solaar-udev",
     "sord",
     "sos",
-    "soundtouch",
     "sratom",
     "sso-mib-libs",
     "tesseract-common",
@@ -654,6 +649,15 @@ packages = [
     { name = "rsync", pr = 514 },
     { name = "tmux", pr = 514 },
     { name = "xdg-utils", pr = 514 },
+    # H.264 decode path + bad-free dep closure wave (branch
+    # wave/codecs-h264-badfree-closure; pr number filled at push time).
+    # gstreamer1-plugin-dav1d is the binary subpackage of rust-gst-plugin-dav1d;
+    # faad2-libs is faad2.spec's %package libs.
+    { name = "faad2-libs" },
+    { name = "gstreamer1-plugin-dav1d" },
+    { name = "gstreamer1-plugins-ugly-free" },
+    { name = "openal-soft" },
+    { name = "soundtouch" },
 ]
 
 [wontfix]
