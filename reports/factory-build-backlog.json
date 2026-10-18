@@ -1,8 +1,8 @@
 {
   "areas": {
     "codecs-media": {
-      "already_recipe": 10,
-      "pending": 38,
+      "already_recipe": 14,
+      "pending": 34,
       "total": 48
     },
     "dev-tools": {
@@ -15,14 +15,14 @@
       "total": 59
     },
     "gnome-apps": {
-      "already_recipe": 5,
-      "pending": 32,
+      "already_recipe": 7,
+      "pending": 30,
       "total": 37
     },
     "long-tail": {
-      "already_recipe": 9,
+      "already_recipe": 10,
       "manifest_wants": 1,
-      "pending": 170,
+      "pending": 169,
       "total": 180
     },
     "power": {
@@ -247,22 +247,22 @@
     {
       "area": "codecs-media",
       "name": "papers-libs",
-      "state": "pending"
+      "state": "already_recipe"
     },
     {
       "area": "codecs-media",
       "name": "papers-nautilus",
-      "state": "pending"
+      "state": "already_recipe"
     },
     {
       "area": "codecs-media",
       "name": "papers-previewer",
-      "state": "pending"
+      "state": "already_recipe"
     },
     {
       "area": "codecs-media",
       "name": "papers-thumbnailer",
-      "state": "pending"
+      "state": "already_recipe"
     },
     {
       "area": "codecs-media",
@@ -1322,12 +1322,12 @@
     {
       "area": "gnome-apps",
       "name": "gnome-disk-utility",
-      "state": "pending"
+      "state": "already_recipe"
     },
     {
       "area": "gnome-apps",
       "name": "gnome-epub-thumbnailer",
-      "state": "pending"
+      "state": "already_recipe"
     },
     {
       "area": "gnome-apps",
@@ -1597,7 +1597,7 @@
     {
       "area": "long-tail",
       "name": "gst-thumbnailers",
-      "state": "pending"
+      "state": "already_recipe"
     },
     {
       "area": "long-tail",
@@ -2692,9 +2692,9 @@
   ],
   "issue": "projectbluefin/utah-packages#308",
   "states": {
-    "already_recipe": 29,
+    "already_recipe": 36,
     "manifest_wants": 1,
-    "pending": 497
+    "pending": 490
   },
   "totals": {
     "backlog": 527,
