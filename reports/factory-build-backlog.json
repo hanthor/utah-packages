@@ -6,9 +6,9 @@
       "total": 48
     },
     "dev-tools": {
-      "already_recipe": 12,
+      "already_recipe": 2,
       "pending": 126,
-      "total": 138
+      "total": 128
     },
     "fonts-i18n": {
       "pending": 59,
@@ -20,10 +20,10 @@
       "total": 37
     },
     "long-tail": {
-      "already_recipe": 11,
+      "already_recipe": 10,
       "manifest_wants": 1,
       "pending": 168,
-      "total": 180
+      "total": 179
     },
     "power": {
       "pending": 6,
@@ -306,11 +306,6 @@
     },
     {
       "area": "dev-tools",
-      "name": "autofs",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
       "name": "bc",
       "state": "pending"
     },
@@ -333,16 +328,6 @@
       "area": "dev-tools",
       "name": "borgbackup",
       "state": "pending"
-    },
-    {
-      "area": "dev-tools",
-      "name": "cifs-utils",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
-      "name": "cifs-utils-info",
-      "state": "already_recipe"
     },
     {
       "area": "dev-tools",
@@ -551,31 +536,6 @@
     },
     {
       "area": "dev-tools",
-      "name": "nfs-client-utils",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
-      "name": "nfs-common-utils",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
-      "name": "nfs-utils",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
-      "name": "nfsv3-client-utils",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
-      "name": "nfsv4-client-utils",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
       "name": "nilfs-utils",
       "state": "pending"
     },
@@ -613,16 +573,6 @@
       "area": "dev-tools",
       "name": "open-vm-tools-desktop",
       "state": "pending"
-    },
-    {
-      "area": "dev-tools",
-      "name": "pinentry",
-      "state": "already_recipe"
-    },
-    {
-      "area": "dev-tools",
-      "name": "pinentry-gnome3",
-      "state": "already_recipe"
     },
     {
       "area": "dev-tools",
@@ -2176,11 +2126,6 @@
     },
     {
       "area": "long-tail",
-      "name": "rpcbind",
-      "state": "already_recipe"
-    },
-    {
-      "area": "long-tail",
       "name": "serd",
       "state": "pending"
     },
@@ -2692,13 +2637,13 @@
   ],
   "issue": "projectbluefin/utah-packages#308",
   "states": {
-    "already_recipe": 41,
+    "already_recipe": 30,
     "manifest_wants": 1,
     "pending": 485
   },
   "totals": {
-    "backlog": 527,
-    "resolved": 24,
+    "backlog": 516,
+    "resolved": 35,
     "wontfix": 0
   }
 }
