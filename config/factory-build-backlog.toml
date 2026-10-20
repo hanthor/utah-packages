@@ -484,7 +484,6 @@ packages = [
     "libref_array",
     "libreport-filesystem",
     "librtmp",
-    "libsigc++30",
     "libslirp",
     "libsrtp",
     "libtraceevent",
@@ -670,6 +669,8 @@ packages = [
     { name = "papers-nautilus", pr = 532 },
     { name = "papers-previewer", pr = 532 },
     { name = "papers-thumbnailer", pr = 532 },
+    # libsigc++30 Rawhide recipe import (this draft PR).
+    { name = "libsigc++30", pr = 545 },
 ]
 
 [wontfix]
