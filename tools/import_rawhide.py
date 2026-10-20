@@ -17,16 +17,16 @@ def run(*args: str, cwd: Path | None = None) -> str:
 
 
 def validate_package(name: str) -> None:
-    # Fedora package names may contain dots (vid.stab), so allow '.' but never
-    # a leading one or '..', which would let the name escape packages/.
+    # Fedora package names may contain dots and plus signs (e.g. libsigc++);
+    # disallow leading separators and '..' to keep the destination in packages/.
     if (
         not name
-        or not name.replace("-", "").replace("_", "").replace(".", "").isalnum()
+        or not name.replace("-", "").replace("_", "").replace(".", "").replace("+", "").isalnum()
         or name[0] in "-."
         or ".." in name
     ):
         raise ValueError(
-            "package name must contain only letters, numbers, '_', '-' or '.', "
+            "package name must contain only letters, numbers, '_', '-', '.', or '+', "
             "cannot start with '-' or '.', and cannot contain '..'"
         )
 

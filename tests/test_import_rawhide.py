@@ -16,7 +16,7 @@ from tools.import_rawhide import validate_branch, validate_package
 
 class ImportRawhideValidationTests(unittest.TestCase):
     def test_valid_package_names(self) -> None:
-        for name in ["gcc", "wireguard-tools", "adw_gtk3_theme", "pkg123", "a-b_c", "vid.stab"]:
+        for name in ["gcc", "wireguard-tools", "adw_gtk3_theme", "pkg123", "a-b_c", "vid.stab", "libsigc++"]:
             with self.subTest(name=name):
                 validate_package(name)
 
