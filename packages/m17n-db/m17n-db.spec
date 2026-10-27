@@ -6,6 +6,9 @@ License:    LGPL-2.1-or-later
 URL:        https://www.nongnu.org/m17n
 
 Source0:    https://download-mirror.savannah.gnu.org/releases/m17n/%{name}-%{version}.tar.gz
+# Following is awaiting for upstream commit; committed in-tree as in Fedora
+# dist-git (from https://raw.githubusercontent.com/gnuman/m17n-inglish-mims/master/minglish/minglish.mim)
+Source1:    minglish.mim
 
 BuildArch:  noarch
 BuildRequires: make
@@ -51,6 +54,9 @@ m17n-db development files
 
 # removing ispell.mim for rh#587927
 rm %{buildroot}%{_datadir}/m17n/ispell.mim
+
+# install minglish keymap
+/usr/bin/install -m 644 %{SOURCE1} %{buildroot}%{_datadir}/m17n
 
 # For installing the translation files
 %find_lang %name

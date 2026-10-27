@@ -4,7 +4,9 @@
 # needs libotf-devel, libXaw-devel and gd-devel, which the factory does not yet
 # carry. Source recipe only; registered as a blocked import until those land
 # (projectbluefin/utah-packages#495). Do not claim the build deps resolve here.
-%bcond_without anthy
+# Anthy support defaults off (Fedora's non-fedora branch) until anthy-unicode
+# lands; build with --with anthy to enable m17n-lib-anthy.
+%bcond_with anthy
 
 Name:           m17n-lib
 Version:        1.8.7
