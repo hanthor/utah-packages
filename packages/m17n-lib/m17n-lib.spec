@@ -3,7 +3,8 @@
 # factory-build-backlog [pending] and absent from Hummingbird); m17n-lib also
 # needs libotf-devel, libXaw-devel and gd-devel, which the factory does not yet
 # carry. Source recipe only; registered as a blocked import until those land
-# (projectbluefin/utah-packages#495). Do not claim the build deps resolve here.
+# (blockers tracked in projectbluefin/utah-packages#735; batch #495). Do not
+# claim the build deps resolve here.
 # Anthy support defaults off (Fedora's non-fedora branch) until anthy-unicode
 # lands; build with --with anthy to enable m17n-lib-anthy.
 %bcond_with anthy
@@ -15,7 +16,7 @@ Summary:        Multilingual text library
 
 License:        LGPL-2.1-or-later
 URL:            http://www.nongnu.org/m17n/
-Source0:        https://download-mirror.savannah.gnu.org/releases/m17n/%{name}-%{version}.tar.gz
+Source0:        http://download.savannah.gnu.org/releases/m17n/%{name}-%{version}.tar.gz
 Patch0:         %{name}-1.8.0-multilib.patch
 
 BuildRequires: make

@@ -718,7 +718,8 @@ packages = [
     { name = "libhangul", pr = 731 },
     { name = "m17n-db", pr = 731 },
     # m17n-lib-anthy needs anthy-unicode (still pending in fonts-i18n); m17n-lib also
-    # links libotf/gd/libXaw, which the factory does not yet carry. Source recipe only.
+    # links libotf/gd/libXaw, which the factory does not yet carry. Source recipe only;
+    # blocked on projectbluefin/utah-packages#735 (not built, published or installable).
     { name = "m17n-lib", pr = 731 },
 ]
 

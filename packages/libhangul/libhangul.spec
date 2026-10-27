@@ -5,14 +5,11 @@ Release:	%autorelease
 License:	LGPL-2.1-or-later
 URL:		https://github.com/libhangul/libhangul
 Source0:	https://github.com/libhangul/libhangul/releases/download/libhangul-%{version}/libhangul-%{version}.tar.gz
-Patch:		%{name}-HEAD.patch
-
-# Carries Fedora's 13-commit libhangul-HEAD.patch (dist-git commit in
-# .hummingbird-upstream.json, c8ea72fb; includes malformed-hanja / NULL-deref
-# fixes, rh#106), applied via %autosetup -S git below, mirroring Fedora.
+Patch:  	%{name}-HEAD.patch
 
 Summary:	Hangul input library
-BuildRequires:	  git, gettext-devel, automake, libtool
+BuildRequires:	  gettext-devel, automake, libtool
+BuildRequires:	  git
 BuildRequires:	  make
 
 
