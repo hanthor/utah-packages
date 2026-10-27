@@ -229,15 +229,9 @@ packages = [
     "ibus-typing-booster",
     "kasumi-common",
     "kasumi-unicode",
-    "langtable",
     "libchewing",
-    "libhangul",
     "libpinyin",
     "libpinyin-data",
-    "m17n-db",
-    "m17n-lib",
-    "python3-langtable",
-    "unicode-ucd",
 ]
 
 [areas.ujust-deps]
@@ -716,6 +710,16 @@ packages = [
     # observed in the image's repodata. Runtime proof for the batch remains in #507.
     { name = "simdutf", commit = "ded82d6174382a397a2d7ddc066daeabe2e31232", pr = 413, published_run = 40481255792, published_nevra = "simdutf-0:9.0.0-1.hum1.bfin.x86_64" },
     { name = "tslib", commit = "e3b500e58e5dbed8948ea41ad926acf454b5b44b", pr = 643, published_run = 40481255792, published_nevra = "tslib-0:1.24-3.hum1.bfin.x86_64" },
+    # Parity import from Fedora rawhide dist-git (projectbluefin/utah-packages#495).
+    # Source recipes only; publication and runtime proof remain on #495.
+    { name = "unicode-ucd", pr = 731 },
+    { name = "langtable", pr = 731 },
+    { name = "python3-langtable", pr = 731 },
+    { name = "libhangul", pr = 731 },
+    { name = "m17n-db", pr = 731 },
+    # m17n-lib-anthy needs anthy-unicode (still pending in fonts-i18n); m17n-lib also
+    # links libotf/gd/libXaw, which the factory does not yet carry. Source recipe only.
+    { name = "m17n-lib", pr = 731 },
 ]
 
 [wontfix]
