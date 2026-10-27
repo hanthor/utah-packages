@@ -232,6 +232,7 @@ packages = [
     "libchewing",
     "libpinyin",
     "libpinyin-data",
+    "m17n-lib",
 ]
 
 [areas.ujust-deps]
@@ -349,7 +350,6 @@ packages = [
     "tesseract-tessdata-doc",
     "uavs3d-libs",
     "ublue-os-akmods-addons",
-    "uchardet",
     "udftools",
     "uresourced",
     "uvg266-libs",
@@ -370,6 +370,11 @@ packages = [
 # Packages that left the backlog because a recipe was imported.
 # Each entry: package name and the commit that closed the gap.
 packages = [
+    # Language data recipe; build/publication and consumer proof remain tracked in #494.
+    { name = "langtable", pr = 700 },
+    { name = "python3-langtable", pr = 700 },
+    # Recipe import only; build, publication and runtime proof remain on #508.
+    { name = "uchardet", pr = 729 },
     # Published boot-screen outputs; recipe #312, source lock #320; runtime proof stays on #505.
     { name = "plymouth", commit = "9565b33477aa10c8af48774fff2598f028a3241a", pr = 320, published_run = 40416793064, published_nevra = "plymouth-0:26.134.222-1.hum1.bfin.x86_64" },
     { name = "plymouth-core-libs", commit = "9565b33477aa10c8af48774fff2598f028a3241a", pr = 320, published_run = 40416793064, published_nevra = "plymouth-core-libs-0:26.134.222-1.hum1.bfin.x86_64" },
@@ -451,7 +456,7 @@ packages = [
     { name = "python3-olefile", pr = 596 },
     { name = "python3-pillow", pr = 596 },
     { name = "usbutils", pr = 596 },
-    { name = "net-snmp-libs", pr = 596 },
+    { name = "net-snmp-libs", pr = 596, published_run = 40511180133, published_nevra = "net-snmp-libs-1:5.9.5.2-10.hum1.bfin.x86_64" },
     { name = "python3-cups", pr = 596 },
     { name = "libraqm", pr = 596 },
     # VPN stack + oath-toolkit/libuser/usermode closure (projectbluefin/utah-packages#585).
@@ -528,7 +533,7 @@ packages = [
     { name = "faad2-libs", pr = 526 },
     { name = "gstreamer1-plugin-dav1d", pr = 526 },
     { name = "gstreamer1-plugins-ugly-free", pr = 526 },
-    { name = "openal-soft", pr = 526 },
+    { name = "openal-soft", pr = 526, published_run = 40511180133, published_nevra = "openal-soft-0:1.24.2-1.hum1.bfin.x86_64" },
     { name = "soundtouch", pr = 526 },
     # Thumbnailers + Disks wave (landing PR #523). libspelling ships as a
     # standalone recipe; papers/gst-thumbnailers deferred to #527.
@@ -594,8 +599,8 @@ packages = [
     { name = "glow", pr = 650 },
     # Runtime dependencies of the GNOME apps imported for Utah (PR #573).
     { name = "libvncserver", pr = 573 },
-    { name = "mod_dnssd", pr = 573 },
-    { name = "mozilla-filesystem", pr = 573 },
+    { name = "mod_dnssd", pr = 573, published_run = 40511180133, published_nevra = "mod_dnssd-0:0.6-37.hum1.bfin.x86_64" },
+    { name = "mozilla-filesystem", pr = 573, published_run = 40511180133, published_nevra = "mozilla-filesystem-0:1.9-39.hum1.bfin.x86_64" },
     { name = "redhat-menus", pr = 573 },
     # sso-mib-libs is a %package subpackage of sso-mib.spec (PR #574).
     { name = "sso-mib-libs", pr = 574 },
@@ -643,7 +648,7 @@ packages = [
     { name = "f2fs-tools", pr = 587 },
     { name = "gamemode", pr = 587 },
     { name = "hdparm", pr = 587 },
-    { name = "lshw", pr = 587 },
+    { name = "lshw", pr = 587, published_run = 40511180133, published_nevra = "lshw-0:B.02.20-13.hum1.bfin.x86_64" },
     { name = "lsof", pr = 587 },
     { name = "man-pages", pr = 587 },
     { name = "mtr", pr = 587 },
@@ -713,14 +718,8 @@ packages = [
     # Parity import from Fedora rawhide dist-git (projectbluefin/utah-packages#495).
     # Source recipes only; publication and runtime proof remain on #495.
     { name = "unicode-ucd", pr = 731 },
-    { name = "langtable", pr = 731 },
-    { name = "python3-langtable", pr = 731 },
     { name = "libhangul", pr = 731 },
     { name = "m17n-db", pr = 731 },
-    # m17n-lib-anthy needs anthy-unicode (still pending in fonts-i18n); m17n-lib also
-    # links libotf/gd/libXaw, which the factory does not yet carry. Source recipe only;
-    # blocked on projectbluefin/utah-packages#735 (not built, published or installable).
-    { name = "m17n-lib", pr = 731 },
 ]
 
 [wontfix]

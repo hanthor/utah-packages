@@ -1,6 +1,6 @@
 Name:           langtable
 Version:        0.0.71
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Guessing reasonable defaults for locale, keyboard layout, territory, and language.
 # the translations in languages.xml and territories.xml are (mostly)
 # imported from CLDR and are thus under the Unicode license, the
@@ -10,6 +10,8 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/mike-fabian/langtable
 Source0:        https://github.com/mike-fabian/langtable/releases/download/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
+# xmllint is used by the schema checks; it is not part of a minimal mock root.
+BuildRequires:  libxml2
 BuildRequires:  perl-interpreter
 BuildRequires:  python3-devel
 

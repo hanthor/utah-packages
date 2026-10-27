@@ -11,8 +11,8 @@
       "total": 83
     },
     "fonts-i18n": {
-      "pending": 18,
-      "total": 18
+      "pending": 19,
+      "total": 19
     },
     "gnome-apps": {
       "already_recipe": 4,
@@ -22,8 +22,8 @@
     "long-tail": {
       "already_recipe": 4,
       "manifest_wants": 1,
-      "pending": 100,
-      "total": 105
+      "pending": 99,
+      "total": 104
     },
     "power": {
       "total": 0
@@ -716,6 +716,11 @@
       "state": "pending"
     },
     {
+      "area": "fonts-i18n",
+      "name": "m17n-lib",
+      "state": "pending"
+    },
+    {
       "area": "gnome-apps",
       "name": "epiphany-runtime",
       "state": "pending"
@@ -1238,11 +1243,6 @@
     {
       "area": "long-tail",
       "name": "ublue-os-akmods-addons",
-      "state": "pending"
-    },
-    {
-      "area": "long-tail",
-      "name": "uchardet",
       "state": "pending"
     },
     {

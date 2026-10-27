@@ -80,6 +80,9 @@ Two edits — never one, never none:
     cross-referencing.
     Once the import PR has a number, populate `pr` before requesting review;
     `--check` validates names and report drift, not this provenance field.
+    For a recipe-only record, use `{ name = "<n>", pr = <n> }` and omit
+    `commit` until a stable commit is known; do not retain an empty `commit`
+    or `pr = 0` placeholder after opening the PR.
   - `[wontfix].packages` (`{ name = "<n>", reason = "..." }`) — Utah decided
     not to carry it, with a link to the decision issue. `reason` is also
     informational and not validated. Catalog comments should describe the
@@ -441,6 +444,16 @@ verify the signature download against its own `sources` digest as well as
 checking the main archive. Recipe-level closing records do not establish
 publication, runtime dependency resolution, or a working WebDAV mount.
 
+### Encoding detection library imports
+
+`uchardet` is both the source recipe and the runtime binary name; the same
+recipe also builds `uchardet-devel`. Keep its CTest `%check` and the imported
+CMake policy compatibility setting when registering the source. For runtime
+acceptance, exercise the installed detector with known non-ASCII input (for
+example UTF-8 text) and record its reported encoding alongside the permitted
+repository transaction. Matching an upstream archive checksum proves source
+identity, not that the installed detector works.
+
 ## Diagnosing drift
 
 - `--check` compares the whole live report with the committed snapshot —
@@ -540,6 +553,21 @@ When rebasing a recipe PR, resolve conflicts in this generated report by rerunni
 `python3 tools/factory_build_backlog.py` against the combined inventory, then
 verify with `--check`; choosing either side can discard another import’s state.
 
+### Langtable source archives and schema checks
+
+`langtable` builds both `langtable` and `python3-langtable`; import the source
+once and reconcile both audit names. Its `%check` invokes `xmllint`, so declare
+`BuildRequires: libxml2` explicitly instead of relying on the container image.
+
+The upstream 0.0.71 release asset has SHA-256
+`f9d39c06d5182ea14eb4576bf1da8875af1d44efb166e55d6865b3b59b8ac617`,
+as recorded by GitHub's release asset API. Its SHA-512 differs from Fedora's
+`sources` pin. Comparing both tarballs showed the same 39 members, file bytes,
+modes and link targets; archive metadata differs. The factory locks the upstream
+asset's SHA-512 in both `sources` and the source lock, with no Fedora fallback
+because Fedora's archive has different bytes. Do not generalize this comparison
+to later releases: investigate any future mismatch before changing a pin.
+
 ### Shell prompt test dependencies
 
 `bash-color-prompt` enables its Bats tests by default. Import `bats` and
@@ -566,10 +594,21 @@ run and all requested binary identities in the reconciliation PR. This closes
 recipe accounting only: a metadata listing does not prove the theme's dependency
 transaction or graphical boot behavior. Keep those acceptance items open in the
 batch issue and hand them to Utah's consumer tracking.
+
 For `pam_yubico`, the Fedora source recipe requires `ykclient-devel`,
 `libyubikey-devel`, and `ykpers-devel`; all three source families must precede
 it in the build graph. A recipe and verified source do not prove authentication
 works: verify the hosted RPM, dependency transaction, and configured hardware.
+
+### Long-tail package output reconciliation
+
+When auditing a long-tail batch, check each output against the published
+primary repodata (see "Reconciling published batches" above) before touching
+the catalog: an output may already sit in `[resolved]` without `published_run`
+/ `published_nevra`; fill those in rather than re-importing. Recipes merged on
+main but not yet in the published image stay in `[resolved]` without
+publication fields until a run ships them. Partial reconciliation PRs must
+link the tracking issue with `Refs #<issue>`, not a closing keyword.
 
 ### S-Lang library imports
 

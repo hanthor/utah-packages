@@ -2260,12 +2260,6 @@ packages:
     downstream_package_name: m17n-db
     paths:
       - packages/m17n-db
-  m17n-lib:
-    specfile_path: m17n-lib.spec
-    upstream_package_name: m17n-lib
-    downstream_package_name: m17n-lib
-    paths:
-      - packages/m17n-lib
   malcontent:
     specfile_path: malcontent.spec
     upstream_package_name: malcontent
@@ -3262,6 +3256,12 @@ packages:
     downstream_package_name: twolame
     paths:
       - packages/twolame
+  uchardet:
+    specfile_path: uchardet.spec
+    upstream_package_name: uchardet
+    downstream_package_name: uchardet
+    paths:
+      - packages/uchardet
   udisks2:
     specfile_path: udisks2.spec
     upstream_package_name: udisks2
